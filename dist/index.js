@@ -16,7 +16,10 @@ const ErrorMiddleware_1 = __importDefault(require("./middleware/ErrorMiddleware"
 });
 // ----Using-Middleware------
 const corsOptions = {
-    origin: [`http://localhost:3000`],
+    origin: [
+        `http://localhost:3000`,
+        `https://lms-website-frontend-tau.vercel.app`,
+    ],
     credentials: true,
 };
 exports.app.use(express_1.default.json({ limit: "50mb" }));

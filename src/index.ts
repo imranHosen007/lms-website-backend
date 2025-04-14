@@ -11,7 +11,10 @@ config({
 });
 // ----Using-Middleware------
 const corsOptions = {
-  origin: [`http://localhost:3000`],
+  origin: [
+    `http://localhost:3000`,
+    `https://lms-website-frontend-tau.vercel.app`,
+  ],
   credentials: true,
 };
 app.use(express.json({ limit: "50mb" }));
