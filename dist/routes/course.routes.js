@@ -1,0 +1,23 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const Auth_1 = require("../middleware/Auth");
+const course_controller_1 = require("../controllers/course.controller");
+const user_controller_1 = require("../controllers/user.controller");
+const router = express_1.default.Router();
+router.post(`/`, user_controller_1.updateAccesssToken, Auth_1.isAuthenticated, (0, Auth_1.authorizationRole)("admin"), course_controller_1.createNewCourse);
+router.post(`/videourl`, course_controller_1.generateVideoUrl);
+router.put(`/edit/:id`, Auth_1.isAuthenticated, (0, Auth_1.authorizationRole)("admin"), course_controller_1.editCourse);
+router.put(`/add-replay`, Auth_1.isAuthenticated, (0, Auth_1.authorizationRole)("admin"), course_controller_1.replayToReview);
+router.put(`/add-question`, Auth_1.isAuthenticated, course_controller_1.addQuestion);
+router.put(`/add-answar`, Auth_1.isAuthenticated, course_controller_1.addAnswar);
+router.put(`/add-review/:id`, Auth_1.isAuthenticated, course_controller_1.addReview);
+router.get(`/without-purchase`, course_controller_1.getAllCourseWihoutPurchase);
+router.get(`/without-purchase/:id`, course_controller_1.getSingleCourseWihoutPurchase);
+router.get(`/purchase/:id`, Auth_1.isAuthenticated, course_controller_1.getSingleCoursePurchaseUser);
+router.get(`/`, Auth_1.isAuthenticated, (0, Auth_1.authorizationRole)("admin"), course_controller_1.getAllCourse);
+router.delete(`/:id`, Auth_1.isAuthenticated, (0, Auth_1.authorizationRole)("admin"), course_controller_1.deleteCourse);
+exports.default = router;
