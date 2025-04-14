@@ -7,7 +7,7 @@ export interface TokenOpetions {
   expires: Date;
   maxAge: number;
   httpOnly: boolean;
-  samSite: "lax" | "strict" | "none" | undefined;
+  sameSite: "lax" | "strict" | "none" | undefined;
   secure?: boolean;
 }
 
@@ -23,14 +23,14 @@ export const accessTokenOptions: TokenOpetions = {
   expires: new Date(Date.now() + accessTokenExpiry * 60 * 1000),
   maxAge: accessTokenExpiry * 60 * 1000,
   httpOnly: true,
-  samSite: "none",
+  sameSite: "none",
   secure: true,
 };
 export const refreshTokenOptions: TokenOpetions = {
   expires: new Date(Date.now() + refreshTokenExpiry * 24 * 60 * 60 * 1000),
   maxAge: refreshTokenExpiry * 24 * 60 * 60 * 1000,
   httpOnly: true,
-  samSite: "none",
+  sameSite: "none",
   secure: true,
 };
 
